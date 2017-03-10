@@ -37,12 +37,12 @@ class Auth extends React.Component {
             <input type="number" required={true} ref={n => this.height =n } placeholder='Height'/>
             <input type="number" required={true} ref={n => this.age =n } placeholder='Age'/>
             <p>
-            <input type="radio" required={true} name='male' ref={n => this.sex =n } id='male'/>
-              <label id='male'>Male</label>
+            <input type="radio" required={true} name='sex' ref={n => this.sex =n } id='male'/>
+              <label htmlFor='male'>Male</label>
             </p>
             <p>
-            <input type="radio" required={true} name='female' ref={n => this.sex =n } id='female' />
-              <label id='female'>Female</label>
+            <input type="radio" required={true} name='sex' ref={n => this.sex =n } id='female' />
+              <label htmlFor='female'>Female</label>
             </p>
               <br/>
            <button className="btn center">{this.props.route.title}</button>
