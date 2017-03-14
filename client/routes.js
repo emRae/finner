@@ -6,6 +6,7 @@ import AuthenticatedRoutes from './components/AuthenticatedRoutes';
 import Auth from './components/Auth';
 import NotFound from './components/NotFound';
 import SignUp from'./components/SignUp';
+import GoalsForm from './components/GoalsForm';
 
 const AdminAccess = UserAuthWrapper({
   authSelector: state => state.user,
@@ -19,13 +20,14 @@ const AdminRoutes = AdminAccess( (props) => props.children )
 export default (
  <Route>
    <Route path="/" component={App}>
-     <Route path="signup" component={SignUp} title="Sign Up" />
-     <Route path="signin" component={Auth} title="Sign In" />
-     <Route component={AuthenticatedRoutes}>
-         {/* PROTECTED BY AUTHENTICATION */}
-       <Route component={AdminRoutes}>
-           {/* PROTECTED BY ADMIN ACCESS */}
-       </Route>
+    <Route path='goals' component={GoalsForm} title='Goals' />
+    <Route path="signup" component={SignUp} title="Sign Up" />
+    <Route path="signin" component={Auth} title="Sign In" />
+    <Route component={AuthenticatedRoutes}>
+        {/* PROTECTED BY AUTHENTICATION */}
+      <Route component={AdminRoutes}>
+          {/* PROTECTED BY ADMIN ACCESS */}
+      </Route>
      </Route>
      <Route path="*" status={404} component={NotFound}/>
    </Route>
