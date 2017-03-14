@@ -6,7 +6,7 @@ import AuthenticatedRoutes from './components/AuthenticatedRoutes';
 import Auth from './components/Auth';
 import NotFound from './components/NotFound';
 import SignUp from'./components/SignUp';
-import GoalsForm from './components/GoalsForm';
+import AboutDietForm from './components/AboutDietForm';
 
 const AdminAccess = UserAuthWrapper({
   authSelector: state => state.user,
@@ -20,7 +20,7 @@ const AdminRoutes = AdminAccess( (props) => props.children )
 export default (
  <Route>
    <Route path="/" component={App}>
-    <Route path='goals' component={GoalsForm} title='Goals' />
+    <Route path='about-diet' component={AboutDietForm} title='About Your Diet' />
     <Route path="signup" component={SignUp} title="Sign Up" />
     <Route path="signin" component={Auth} title="Sign In" />
     <Route component={AuthenticatedRoutes}>

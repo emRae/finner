@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {refreshLogin} from '../actions/auth';
 import {setFlash} from '../actions/flash';
 
-class GoalsForm extends React.Component{
+class AboutDietForm extends React.Component{
   handleSubmit= (e) => {
     e.preventDefault();
-    let {goals, activityLevel, props: {location, dispatch, router}} = this;
+    let {goals, activityLevel, restrictions, props: {location, dispatch, router}} = this;
     
     $.ajax({
       url:`/api/auth/${location.pathname}`,
@@ -26,9 +26,9 @@ class GoalsForm extends React.Component{
   render() {
     return (
       <div>
-          <h2 className='center'>Set Your {this.props.route.title}</h2>
+          <h2 className='center'>Tell Us {this.props.route.title}</h2>
           <form onSubmit={this.handleSubmit}>
-          <h4>Set your goals</h4>
+          <h4>Your goals</h4>
             <input type="radio" required={true} name='goals' ref={n => this.goals =n } id='lose'/>
               <label htmlFor='lose'>Lose Weight</label>
             <input type="radio" required={true} name='goals' ref={n => this.goals =n } id='gain' />
@@ -37,7 +37,18 @@ class GoalsForm extends React.Component{
               <label htmlFor='maintain'>Maintain Weight</label>
             <input type="radio" required={true} name='goals' ref={n => this.goals =n } id='other' />
               <label htmlFor='other'>Other</label>
-          <h4>Set your activity level</h4>
+          <h4>Your dietary restrictions</h4>
+            <input type="radio" required={true} name='restrictions' ref={n => this.restrictions =n } id='vegetarian'/>
+              <label htmlFor='vegetarian'>Vegetarian</label>
+            <input type="radio" required={true} name='restrictions' ref={n => this.restrictions =n } id='vegan' />
+              <label htmlFor='vegan'>Vegan</label>
+            <input type="radio" required={true} name='restrictions' ref={n => this.restrictions =n } id='nogluten'/>
+              <label htmlFor='nogluten'>Gluten Free</label>
+            <input type="radio" required={true} name='restrictions' ref={n => this.restrictions =n } id='nodairy' />
+              <label htmlFor='nodairy'>Dairy Free</label>
+            <input type="radio" required={true} name='restrictions' ref={n => this.restrictions =n } id='none' />
+              <label htmlFor='none'>None</label>
+          <h4>Your activity level</h4>
             <input type="radio" required={true} name='activityLevel' ref={n => this.activityLevel =n } id='low'/>
               <label htmlFor='low'>Low Activity</label>
             <input type="radio" required={true} name='activityLevel' ref={n => this.activityLevel =n } id='medium' />
@@ -54,4 +65,4 @@ class GoalsForm extends React.Component{
   
 }
 
-export default connect()(GoalsForm);
+export default connect()(AboutDietForm);
