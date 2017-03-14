@@ -6,7 +6,7 @@ import { setFlash } from '../actions/flash';
 class DietGoals extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
-    let { email, password, props: { location, dispatch, router }} = this;
+    let { goals, props: { location, dispatch, router }} = this;
 
     $.ajax({
       url: `/api/auth/${location.pathname}`,
