@@ -70,7 +70,7 @@ class App extends React.Component {
     return (
       <div>
         <nav>
-          <div className="nav-wrapper">
+          <div className="nav-wrapper green lighten-2">
             <a href="#!" className="brand-logo">Finner</a>
             <a href="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
