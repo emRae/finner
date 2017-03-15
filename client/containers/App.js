@@ -34,16 +34,25 @@ class App extends React.Component {
           return this.link(i, link.name, link.path)
         });
         links.push(
-          <li key="logout">
-            <a 
-              href="#" 
-              onClick={ e => {
-                this.props.dispatch(logout(this.props.router))
-              }}
-            >
-              Logout
-            </a>
-          </li>
+          <ul>
+            <li key="logout">
+              <a 
+                href="#" 
+                onClick={ e => {
+                  this.props.dispatch(logout(this.props.router))
+                }}
+              >
+                Logout
+              </a>
+            </li>
+            <li key="about-diet">
+              <a 
+                href="/about-diet" 
+              >
+                Diet
+              </a>
+            </li>
+          </ul>
         )
       return links;
     } else {
@@ -61,8 +70,8 @@ class App extends React.Component {
     return (
       <div>
         <nav>
-          <div className="nav-wrapper">
-            <a href="#!" className="brand-logo">Logo</a>
+          <div className="nav-wrapper green lighten-2">
+            <a href="#!" className="brand-logo">Finner</a>
             <a href="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
               { this.links() }
