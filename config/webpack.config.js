@@ -29,7 +29,10 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif|svg)$/i,
         loader: 'url-loader',
-        include: [ path.join(__dirname, "..", "client") ],
+        include: [ path.join(__dirname, "..", "client")],
+        options: {
+        limit: 25000
+        }
       },
       { 
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
