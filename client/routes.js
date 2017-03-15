@@ -20,10 +20,10 @@ const AdminRoutes = AdminAccess( (props) => props.children )
 export default (
  <Route>
    <Route path="/" component={App}>
-    <Route path='about-diet' component={AboutDietForm} title='About Your Diet' />
     <Route path="signup" component={SignUp} title="Sign Up" />
     <Route path="signin" component={Auth} title="Sign In" />
     <Route component={AuthenticatedRoutes}>
+      <Route path='about-diet' component={AboutDietForm} title='About Your Diet' />
         {/* PROTECTED BY AUTHENTICATION */}
       <Route component={AdminRoutes}>
           {/* PROTECTED BY ADMIN ACCESS */}
