@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
+const mongoose = require('mongoose');
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost/capstone-starter'
 mongoose.connect(mongoUri)
 
