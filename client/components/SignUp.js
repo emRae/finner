@@ -33,8 +33,8 @@ class SignUp extends React.Component {
           <form onSubmit={this.handleSubmit}>
             <input type="email" required={true} ref={ n => this.email = n } placeholder="Email" />
             <input type="password" required={true} ref={n => this.password = n } placeholder="Password" />
-            <input type="number" required={true} ref={n => this.weight =n } placeholder='Weight'/>
-            <input type="number" required={true} ref={n => this.height =n } placeholder='Height'/>
+            <input type="number" required={true} ref={n => this.weight =n } placeholder='Weight (lbs)'/>
+            <input type="number" required={true} ref={n => this.height =n } placeholder='Height (inches)'/>
             <input type="number" required={true} ref={n => this.age =n } placeholder='Age'/>
             <p>
             <input type="radio" required={true} name='sex' ref={n => this.sex =n } id='male'/>
