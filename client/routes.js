@@ -6,7 +6,7 @@ import AuthenticatedRoutes from './components/AuthenticatedRoutes';
 import Auth from './components/Auth';
 import NotFound from './components/NotFound';
 import SignUp from'./components/SignUp';
-import AboutDietForm from './components/AboutDietForm';
+import Diet from './components/Diet';
 import Dashboard from './components/Dashboard';
 
 const AdminAccess = UserAuthWrapper({
@@ -24,7 +24,7 @@ export default (
     <Route path="signup" component={SignUp} title="Sign Up" />
     <Route path="signin" component={Auth} title="Sign In" />
     <Route component={AuthenticatedRoutes}>
-      <Route path='about-diet' component={AboutDietForm} title='About Your Diet' />
+      <Route path='about-diet' component={Diet} title='About Your Diet' />
       <Route path='dashboard' component={Dashboard} title='dashboard' />
         {/* PROTECTED BY AUTHENTICATION */}
       <Route component={AdminRoutes}>

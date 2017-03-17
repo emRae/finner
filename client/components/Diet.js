@@ -3,10 +3,10 @@ import {connect} from 'react-redux';
 import {refreshLogin} from '../actions/auth';
 import {setFlash} from '../actions/flash';
 
-class AboutDietForm extends React.Component{
+class Diet extends React.Component{
   handleSubmit= (e) => {
     e.preventDefault();
-    let {goals, activityLevel, restrictions, props: {location, dispatch, router}} = this;
+    let {goals, activity, restrictions, props: {location, dispatch, router}} = this;
     
     $.ajax({
       url:`/api/auth/${location.pathname}`,
@@ -50,13 +50,13 @@ class AboutDietForm extends React.Component{
             <input type="radio" required={true} name='restrictions' ref={n => this.restrictions =n } id='none' />
               <label htmlFor='none'>None</label>
           <h4>Your activity level</h4>
-            <input type="radio" required={true} name='activityLevel' ref={n => this.activityLevel =n } id='low'/>
+            <input type="radio" required={true} name='activity' ref={n => this.activity =n } id='low'/>
               <label htmlFor='low'>Low Activity</label>
-            <input type="radio" required={true} name='activityLevel' ref={n => this.activityLevel =n } id='medium' />
+            <input type="radio" required={true} name='activity' ref={n => this.activity =n } id='medium' />
               <label htmlFor='medium'>Medium Activity</label>
-            <input type="radio" required={true} name='activityLevel' ref={n => this.activityLevel =n } id='high'/>
+            <input type="radio" required={true} name='activity' ref={n => this.activity =n } id='high'/>
               <label htmlFor='high'>High Activity</label>
-            <input type="radio" required={true} name='activityLevel' ref={n => this.activityLevel =n } id='other2' />
+            <input type="radio" required={true} name='activity' ref={n => this.activity =n } id='other2' />
               <label htmlFor='other2'>Other</label>
           </form>
       </div>
@@ -66,4 +66,4 @@ class AboutDietForm extends React.Component{
   
 }
 
-export default connect()(AboutDietForm);
+export default connect()(Diet);
