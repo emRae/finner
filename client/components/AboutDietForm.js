@@ -13,6 +13,7 @@ class AboutDietForm extends React.Component{
       type: 'POST',
       data: { 
         goals: goals.value,
+        restrictions: restrictions.value,
         activityLevel: activityLevel.value
       }
     }).done( user => {
