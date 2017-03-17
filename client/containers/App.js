@@ -54,6 +54,16 @@ class App extends React.Component {
             
         )
         links.push(
+            <li key="meals">
+              <a 
+                href="/meals"
+              >
+                Meals
+              </a>
+            </li>
+            
+        )
+        links.push(
             <li key="logout">
               <a 
                 href="#" 

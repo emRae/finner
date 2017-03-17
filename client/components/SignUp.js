@@ -4,6 +4,7 @@ import { refreshLogin, sendData } from '../actions/auth';
 import { setFlash } from '../actions/flash';
 
 class SignUp extends React.Component {
+  state = { sex: ''}
   handleSubmit = (e) => {
     e.preventDefault();
     let { email, password, weight, height, age, sex, props: { location, dispatch, router }} = this;
@@ -16,7 +17,7 @@ class SignUp extends React.Component {
         weight: weight.value, 
         height: height.value, 
         age: age.value, 
-        sex: sex.value,
+        sex: this.state.sex,
       }
     }).done( user => {
       dispatch(refreshLogin(user));
@@ -24,6 +25,10 @@ class SignUp extends React.Component {
     }).fail( err => {
       dispatch(setFlash(err.responseJSON.message, 'error'))
     });
+  }
+
+  handleChange = (e) => {
+    this.setState({[e.target.name]: e.target.value })
   }
 
   render() {
@@ -37,11 +42,11 @@ class SignUp extends React.Component {
             <input type="number" required={true} ref={n => this.height =n } placeholder='Height (inches)'/>
             <input type="number" required={true} ref={n => this.age =n } placeholder='Age'/>
             <p>
-            <input type="radio" required={true} name='sex' ref={n => this.sex =n } id='male'/>
+            <input type="radio" required={true} onChange={this.handleChange} value="male" name='sex' ref={n => this.sex =n } id='male'/>
               <label htmlFor='male'>Male</label>
             </p>
             <p>
-            <input type="radio" required={true} name='sex' ref={n => this.sex =n } id='female' />
+            <input type="radio" required={true} name='sex' onChange={this.handleChange} value="female" ref={n => this.sex =n } id='female' />
               <label htmlFor='female'>Female</label>
             </p>
               <br/>
