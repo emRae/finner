@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { refreshLogin } from '../actions/auth';
+import { refreshLogin, sendData } from '../actions/auth';
 import { setFlash } from '../actions/flash';
 
 class SignUp extends React.Component {
@@ -9,14 +9,14 @@ class SignUp extends React.Component {
     let { email, password, weight, height, age, sex, props: { location, dispatch, router }} = this;
 
     $.ajax({
-      url: `/api/auth/${location.pathname}`,
+      url: `/api/auth${location.pathname}`,
       type: 'POST',
       data: { email: email.value, 
         password: password.value, 
         weight: weight.value, 
         height: height.value, 
         age: age.value, 
-        sex: sex.value 
+        sex: sex.value,
       }
     }).done( user => {
       dispatch(refreshLogin(user));

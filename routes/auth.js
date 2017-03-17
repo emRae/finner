@@ -15,7 +15,12 @@ router.post('/signup', (req, res) => {
   User.register(new User({username: email}), password, (err, user) => {
     if (err)
       return res.status(500).json(err);
-
+    // get values from req.body
+    // user.thing = req.body.thing
+    user.weight = req.body.weight,
+    user.age = req.body.age,
+    user.height = req.body.height,
+    user.sex = req.body.sex
     user.save( (err, user) => {
       if (err)
         return res.status(500).json(err);

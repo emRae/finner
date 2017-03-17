@@ -14,6 +14,16 @@ export const refreshLogin = (user = null) => {
   }
 }
 
+export const sendData = (user ={}) =>{
+  return (dispatch) =>{
+    $.ajax({
+      url:'/api/auth/user',
+      type: 'POST',
+      dataType: 'JSON'
+    }).done( (console.log ('it worked')))
+  }
+}
+
 export const logout = (router) => {
   return (dispatch) => {
     $.ajax({

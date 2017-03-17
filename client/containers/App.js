@@ -34,7 +34,26 @@ class App extends React.Component {
           return this.link(i, link.name, link.path)
         });
         links.push(
-          <ul>
+            <li key="dashboard">
+              <a 
+                href="/dashboard"
+              >
+                Dashboard
+              </a>
+            </li>
+            
+        )
+        links.push(
+            <li key="diet">
+              <a 
+                href="/about-diet"
+              >
+                Diet
+              </a>
+            </li>
+            
+        )
+        links.push(
             <li key="logout">
               <a 
                 href="#" 
@@ -45,14 +64,7 @@ class App extends React.Component {
                 Logout
               </a>
             </li>
-            <li key="about-diet">
-              <a 
-                href="/about-diet" 
-              >
-                Diet
-              </a>
-            </li>
-          </ul>
+            
         )
       return links;
     } else {

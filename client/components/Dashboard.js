@@ -1,25 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {clearFlash} from '../actions/flash.js'
+import {setFlash} from '../actions/flash';
 
-//BMR
-const Dashboard = () => {
-let age = 26;
-let height = 69;
-let weight = 184;
-let gender = true;
-let bmr = age + height + weight
-  if(gender === true) {
+
+class Dashboard extends React.Component {
+// need to be able to pull this information from user via database
+// need to be able to update daily caloric intake based on activity level and goals
+
+
+
+  render() {
+    let { weight, height, age } = this.props.user;
+    let bmr = 66 + (6.2 * weight) + (12.7 * height) - (6.76 * age)
     return(
-      <div>
-        <h1>{this.bmr}</h1>
-      </div>
+    <div>
+      <h2>Your Daily Caloric Intake if you weren't moving at all is: {bmr}</h2>
+    </div>
     )
   }
 }
 
-//Meals
-// 
+const mapStateToProps = (state) => {
+  return { user: state.user }
+}
 
-
-export default connect()(DashBoard);
+export default connect(mapStateToProps)(Dashboard)

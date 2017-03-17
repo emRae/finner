@@ -23,9 +23,9 @@ export default (
    <Route path="/" component={App}>
     <Route path="signup" component={SignUp} title="Sign Up" />
     <Route path="signin" component={Auth} title="Sign In" />
-    <Route path='dashboard' component={Dashboard} title='dashboard' />
     <Route component={AuthenticatedRoutes}>
       <Route path='about-diet' component={AboutDietForm} title='About Your Diet' />
+      <Route path='dashboard' component={Dashboard} title='dashboard' />
         {/* PROTECTED BY AUTHENTICATION */}
       <Route component={AdminRoutes}>
           {/* PROTECTED BY ADMIN ACCESS */}
