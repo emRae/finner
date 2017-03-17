@@ -14,7 +14,7 @@ class Dashboard extends React.Component {
     let bmr = 66 + (6.2 * weight) + (12.7 * height) - (6.76 * age)
     return(
     <div>
-      <h2>Your Daily Caloric Intake if you weren't moving at all is: {bmr}</h2>
+      <h5>Daily Caloric: {bmr}</h5>
     </div>
     )
   }

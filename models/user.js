@@ -10,6 +10,9 @@ let User = new Schema({
   weight: {type: Number},
   height: {type: Number},
   gender: {type: String},
+  activity: {type: Number},
+  goals: {type: Number},
+  diet: {type: String},
 });
 
 User.plugin(passportLocalMongoose);
