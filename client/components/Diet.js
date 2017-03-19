@@ -7,21 +7,23 @@ class Diet extends React.Component{
   handleSubmit= (e) => {
     e.preventDefault();
     let {goals, activity, restrictions, props: {location, dispatch, router}} = this;
+    console.log(goals.value);
     
-    $.ajax({
-      url:`/api/auth/${location.pathname}`,
-      type: 'POST',
-      data: { 
-        goals: goals.value,
-        restrictions: restrictions.value,
-        activityLevel: activityLevel.value
-      }
-    }).done( user => {
-      dispatch(refreshLogin(user));
-      router.push('/')
-    }).fail(err => {
-      dispatch(setFlash(err.responseJSON.message, 'error'))
-    });
+    // $.ajax({
+    //   url:`/api/auth/about-diet`,
+    //   type: 'PUT',
+    //   data: { 
+    //     goals: goals.value,
+    //     restrictions: restrictions.value,
+    //     activityLevel: activityLevel.value,
+    //     userId: this.props.user._id
+    //   }
+    // }).done( user => {
+    //   dispatch(refreshLogin(user));
+    //   router.push('/')
+    // }).fail(err => {
+    //   dispatch(setFlash(err.responseJSON.message, 'error'))
+    // });
   }
 
   render() {
@@ -30,13 +32,13 @@ class Diet extends React.Component{
           <h2 className='center'>Tell Us {this.props.route.title}</h2>
           <form onSubmit={this.handleSubmit}>
           <h4>Your goals</h4>
-            <input type="radio" required={true} name='goals' ref={n => this.goals =n } id='lose'/>
+            <input type="radio" value="lose" required={true} name='goals' ref={n => this.goals =n } id='lose'/>
               <label htmlFor='lose'>Lose Weight</label>
-            <input type="radio" required={true} name='goals' ref={n => this.goals =n } id='gain' />
+            <input type="radio" value="gain"required={true} name='goals' ref={n => this.goals =n } id='gain' />
               <label htmlFor='gain'>Gain Weight</label>
-            <input type="radio" required={true} name='goals' ref={n => this.goals =n } id='maintain'/>
+            <input type="radio" value="maintain"required={true} name='goals' ref={n => this.goals =n } id='maintain'/>
               <label htmlFor='maintain'>Maintain Weight</label>
-            <input type="radio" required={true} name='goals' ref={n => this.goals =n } id='other' />
+            <input type="radio" value="other"required={true} name='goals' ref={n => this.goals =n } id='other' />
               <label htmlFor='other'>Other</label>
           <h4>Your dietary restrictions</h4>
             <input type="radio" required={true} name='restrictions' ref={n => this.restrictions =n } id='vegetarian'/>
@@ -58,6 +60,8 @@ class Diet extends React.Component{
               <label htmlFor='high'>High Activity</label>
             <input type="radio" required={true} name='activity' ref={n => this.activity =n } id='other2' />
               <label htmlFor='other2'>Other</label>
+            <hr/>
+            <button className="btn center">Submit</button>
           </form>
       </div>
     )
