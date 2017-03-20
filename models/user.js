@@ -11,8 +11,8 @@ let User = new Schema({
   height: {type: Number},
   gender: {type: String},
   bmr: {type: Number},
-  activity: {type: Number},
-  goals: {type: Number},
+  activity: {type: String},
+  goals: {type: String},
   diet: {type: String},
 });
 
