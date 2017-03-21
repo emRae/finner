@@ -20,11 +20,13 @@ class Diet extends React.Component{
         userId: this.props.user._id
       }
     }).done( user => {
-      // updates the state for the UI
-      console.log(user);
+      // updates the store and react updates the UI with the new data
+      dispatch(refreshLogin(user));
+      router.push("/")    
     }).fail(err => {
       dispatch(setFlash(err.responseJSON.message, 'error'))
     });
+    
   }
 
   handleChange = (e) => {

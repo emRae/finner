@@ -32,8 +32,15 @@ router.post('/signup', (req, res) => {
 // udate the user with info and goals in the server database
 router.put('/about-diet', (req, res) => {
   console.log("got to the about diet route");
-  let { goals, restrictions, activityLevel } = req.body;
-
+  console.log(req.body.userId);
+  let { goals, restrictions, activityLevel, userId } = req.body;
+  User.findByIdAndUpdate(
+    userId,
+    { $set: { goals, restrictions, activityLevel} },
+    { new: true },
+    (err, user) => {
+      res.json(user);
+  });
 });
 
 router.post('/signin', (req, res) => {
