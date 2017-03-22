@@ -22,7 +22,8 @@ class Diet extends React.Component{
     }).done( user => {
       // updates the store and react updates the UI with the new data
       dispatch(refreshLogin(user));
-      router.push("/")    
+      router.push("dashboard");
+      dispatch(setFlash('you updated your preferences', 'success'));
     }).fail(err => {
       dispatch(setFlash(err.responseJSON.message, 'error'))
     });
@@ -45,8 +46,17 @@ class Diet extends React.Component{
               <label htmlFor='gain'>Gain Weight</label>
             <input type="radio" value="maintain"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='maintain'/>
               <label htmlFor='maintain'>Maintain Weight</label>
-            <input type="radio" value="other"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='other' />
+            <input type="radio" value="othergoal"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='othergoal' />
               <label htmlFor='othergoal'>Other</label>
+          <h4>Your activity level</h4>
+            <input type="radio" value="low" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='low'/>
+              <label htmlFor='low'>Low Activity</label>
+            <input type="radio" value="medium" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='medium' />
+              <label htmlFor='medium'>Medium Activity</label>
+            <input type="radio" value="high" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='high'/>
+              <label htmlFor='high'>High Activity</label>
+            <input type="radio" value="otheractivity" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='otheractivity' />
+              <label htmlFor='otheractivity'>Other</label>
           <h4>Your dietary restrictions</h4>
             <input type="radio" value="vegetarian" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='vegetarian'/>
               <label htmlFor='vegetarian'>Vegetarian</label>
@@ -56,17 +66,8 @@ class Diet extends React.Component{
               <label htmlFor='nogluten'>Gluten Free</label>
             <input type="radio" value="nodairy" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='nodairy' />
               <label htmlFor='nodairy'>Dairy Free</label>
-            <input type="radio" value="none" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='none' />
-              <label htmlFor='none'>None</label>
-          <h4>Your activity level</h4>
-            <input type="radio" value="low" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='low'/>
-              <label htmlFor='low'>Low Activity</label>
-            <input type="radio" value="medium" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='medium' />
-              <label htmlFor='medium'>Medium Activity</label>
-            <input type="radio" value="" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='high'/>
-              <label htmlFor='high'>High Activity</label>
-            <input type="radio" value="high" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='other2' />
-              <label htmlFor='otheractivity'>Other</label>
+            <input type="radio" value="norestrictions" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='norestrictions' />
+              <label htmlFor='norestrictions'>None</label>
             <hr/>
             <button className="btn center">Submit</button>
           </form>
