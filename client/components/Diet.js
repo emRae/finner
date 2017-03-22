@@ -9,7 +9,17 @@ class Diet extends React.Component{
   handleSubmit= (e) => {
     e.preventDefault();
     let {goals, activity, restrictions, props: {location, dispatch, router}} = this;
+    let { bmr } = this.props.user;
     
+    console.log(this.state.goals);
+
+    let numAct = this.numActivity(this.state.activity);
+    let numGoal = this.numGoals(this.state.goals);
+    console.log(numAct)
+    console.log(numGoal)
+    let bmrUpdate = bmr + numAct + numGoal
+    console.log(bmrUpdate)
+
     $.ajax({
       url:`/api/auth/about-diet`,
       type: 'PUT',
@@ -17,7 +27,8 @@ class Diet extends React.Component{
         goals: this.state.goals,
         restrictions: this.state.restrictions,
         activityLevel: this.state.activity,
-        userId: this.props.user._id
+        userId: this.props.user._id,
+        bmr: bmrUpdate
       }
     }).done( user => {
       // updates the store and react updates the UI with the new data
@@ -28,6 +39,35 @@ class Diet extends React.Component{
       dispatch(setFlash(err.responseJSON.message, 'error'))
     });
     
+  }
+
+  numGoals = (goals) => {
+    switch (goals) {
+      case "lose":
+        return -300;
+        break;
+      case "gain":
+        return 300;
+        break;
+      default:
+        return 0;
+    }
+  }
+
+  numActivity = (activity) => {
+    switch (activity) {
+      case 'low':
+        return 600;
+        break;
+      case 'medium':
+        return 800;
+        break;
+      case 'high':
+        return 1000;
+        break;
+      default:
+        return 0;
+    }
   }
 
   handleChange = (e) => {
