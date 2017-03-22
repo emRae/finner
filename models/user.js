@@ -9,7 +9,7 @@ let User = new Schema({
   age: {type: Number},
   weight: {type: Number},
   height: {type: Number},
-  gender: {type: String},
+  sex: {type: String},
   bmr: {type: Number},
   activityLevel: {type: String},
   goals: {type: String},

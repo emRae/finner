@@ -21,6 +21,7 @@ router.post('/signup', (req, res) => {
     user.age = req.body.age,
     user.height = req.body.height,
     user.sex = req.body.sex
+    user.bmr = req.body.bmr
     user.save( (err, user) => {
       if (err)
         return res.status(500).json(err);

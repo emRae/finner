@@ -4,10 +4,12 @@ import { refreshLogin, sendData } from '../actions/auth';
 import { setFlash } from '../actions/flash';
 
 class SignUp extends React.Component {
-  state = { sex: ''}
+  state = { sex: '', bmr: 0}
+  
   handleSubmit = (e) => {
     e.preventDefault();
     let { email, password, weight, height, age, sex, props: { location, dispatch, router }} = this;
+    let bmr = this.calculateBmr(weight.value, height.value, age.value);
 
     $.ajax({
       url: `/api/auth${location.pathname}`,
@@ -18,6 +20,7 @@ class SignUp extends React.Component {
         height: height.value, 
         age: age.value, 
         sex: this.state.sex,
+        bmr: bmr,
       }
     }).done( user => {
       dispatch(refreshLogin(user));
@@ -25,6 +28,14 @@ class SignUp extends React.Component {
     }).fail( err => {
       dispatch(setFlash(err.responseJSON.message, 'error'))
     });
+  }
+
+  calculateBmr = (weight, height, age) => {
+    if (this.state.sex === 'male') {
+      return 66 + (6.2 * weight) + (12.7 * height) - (6.76 * age)
+    } else {
+      return 655.1 + ( 4.35 * weight) + ( 4.7 * height ) - ( 4.7 * age )
+    }
   }
 
   handleChange = (e) => {
