@@ -46,6 +46,7 @@
     "sass-loader": "^6.0.3",
     "serve-favicon": "~2.3.2",
     "style-loader": "^0.13.2",
+    "unirest": "^0.5.1",
     "url-loader": "^0.5.8",
     "webpack": "^2.2.1",
     "webpack-dev-server": "^2.3.0"
