@@ -7,10 +7,10 @@ class Dashboard extends React.Component {
 
   render() {
     
-    let { weight, height, age, goals, activityLevel, restrictions, bmr } = this.props.user;
+    let { weight, height, age, goals, activityLevel, restrictions, bmrUpdate } = this.props.user;
     return(
     <div>
-      <h5>Daily Caloric: {parseInt(bmr)}</h5>
+      <h5>Daily Caloric: {parseInt(bmrUpdate)}</h5>
       <p>Your goal is to: {goals}</p>
       <p>Your activity level is: {activityLevel}</p>
       <p>Your diet is based on: {restrictions}</p>
