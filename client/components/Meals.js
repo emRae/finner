@@ -1,8 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {setFlash} from '../actions/flash';
+import unirest from 'unirest';
 
 class Meals extends React.Component {
+  componentDidMount() {
+    var diet = 'vegan'
+    var exclude = 'olives'
+    var Calories = '2000'
+  
+    $.ajax({
+      type: 'GET',
+      headers: {
+          'X-Mashape-Key': 'MGqUlSz03Qmsho5Iu4oewmO0fgXdp1DllUYjsnURxaG8cbLwvN'
+      },
+      url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/mealplans/generate?diet=' + diet + '&exclude=' + exclude + '&targetCalories' + Calories,
+      success: function(data){
+          console.log(data);
+      }
+    });
+  }
+
   state = { sex: '' }
   
   setSexMale = () => {
