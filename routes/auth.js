@@ -20,8 +20,14 @@ router.post('/signup', (req, res) => {
     user.weight = req.body.weight,
     user.age = req.body.age,
     user.height = req.body.height,
-    user.sex = req.body.sex
-    user.bmr = req.body.bmr
+    user.sex = req.body.sex,
+    user.bmrOrig = req.body.bmrOrig,
+    user.bmrUpdate = req.body.bmrUpdate,
+    user.exclude = req.body.exclude
+    user.goals = req.body.goals,
+    user.restrictions = req.body.restrictions,
+    user.activityLevel = req.body.activityLevel,
+    user.exclude = req.body.exclude
     user.save( (err, user) => {
       if (err)
         return res.status(500).json(err);
@@ -34,10 +40,10 @@ router.post('/signup', (req, res) => {
 router.put('/about-diet', (req, res) => {
   console.log("got to the about diet route");
   console.log(req.body.userId);
-  let { goals, restrictions, activityLevel, bmr, userId } = req.body;
+  let { goals, restrictions, activityLevel, bmr, exclude, userId } = req.body;
   User.findByIdAndUpdate(
     userId,
-    { $set: { goals, restrictions, activityLevel, bmr} },
+    { $set: { goals, restrictions, activityLevel, bmr, exclude} },
     { new: true },
     (err, user) => {
       res.json(user);

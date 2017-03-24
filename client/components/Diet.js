@@ -6,30 +6,27 @@ import {store} from '../store.js';
 import { someStyle, greatStyle } from './styles.scss';
 
 class Diet extends React.Component{
-  
+  state = {email, password, weight, height, age, sex, goals, restrictions, activityLevel, exclude}
   handleSubmit= (e) => {
     e.preventDefault();
-    let {goals, activity, restrictions, props: {location, dispatch, router}} = this;
-    let { bmr } = this.props.user;
-    
-    console.log(this.state.goals);
-
-    let numAct = this.numActivity(this.state.activity);
-    let numGoal = this.numGoals(this.state.goals);
-    console.log(numAct)
-    console.log(numGoal)
-    let bmrUpdate = bmr + numAct + numGoal
-    console.log(bmrUpdate)
+    let {props: {location, dispatch, router}} = this;
+    let {email, password, weight, height, age, sex, goals, restrictions, activityLevel, exclude, bmrOrig, bmrUpdate } = this.props.user;
 
     $.ajax({
       url:`/api/auth/about-diet`,
       type: 'PUT',
       data: { 
+        password: password.value, 
+        weight: weight.value, 
+        height: height.value, 
+        age: age.value, 
+        sex: this.state.sex,
+        bmrOrig: bmrOrig,
+        bmrUpdate: bmrUpdate,
         goals: this.state.goals,
         restrictions: this.state.restrictions,
         activityLevel: this.state.activity,
-        userId: this.props.user._id,
-        bmr: bmrUpdate
+        exclude: exclude.value,
       }
     }).done( user => {
       // updates the store and react updates the UI with the new data
@@ -77,41 +74,44 @@ class Diet extends React.Component{
 
   render() {
     return (
-      <div className="container">
-          <h2 className='center'>Tell Us {this.props.route.title}</h2>
+      <div>
+        <h2 className="center">Settings</h2>
           <form onSubmit={this.handleSubmit}>
           <h4>Your goals</h4>
             <input type="radio" value="lose" required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='lose'/>
               <label className={someStyle} htmlFor='lose'>Lose Weight</label>
             <input type="radio" value="gain"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='gain' />
               <label htmlFor='gain'>Gain Weight</label>
-            <input type="radio" value="maintain"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='maintain'/>
+            <input type="radio" value="maintain" onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='maintain'/>
               <label htmlFor='maintain'>Maintain Weight</label>
-            <input type="radio" value="othergoal"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='othergoal' />
+            <input type="radio" value="othergoal" onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='othergoal' />
               <label htmlFor='othergoal'>Other</label>
-          <h4>Your activity level</h4>
-            <input type="radio" value="low" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='low'/>
+            <h5>Your activity level</h5>
+            <input type="radio" value="low" onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='low'/>
               <label htmlFor='low'>Low Activity</label>
-            <input type="radio" value="medium" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='medium' />
+            <input type="radio" value="medium" onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='medium' />
               <label htmlFor='medium'>Medium Activity</label>
-            <input type="radio" value="high" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='high'/>
+            <input type="radio" value="high" onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='high'/>
               <label htmlFor='high'>High Activity</label>
-            <input type="radio" value="otheractivity" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='otheractivity' />
+            <input type="radio" value="otheractivity" onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='otheractivity' />
               <label htmlFor='otheractivity'>Other</label>
-          <h4>Your dietary restrictions</h4>
-            <input type="radio" value="vegetarian" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='vegetarian'/>
+            <h5>Your dietary restrictions</h5>
+            <input type="radio" value="vegetarian" onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='vegetarian'/>
               <label htmlFor='vegetarian'>Vegetarian</label>
-            <input type="radio" value="vegan" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='vegan' />
+            <input type="radio" value="vegan" onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='vegan' />
               <label htmlFor='vegan'>Vegan</label>
-            <input type="radio" value="nogluten" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='nogluten'/>
+            <input type="radio" value="nogluten" onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='nogluten'/>
               <label htmlFor='nogluten'>Gluten Free</label>
-            <input type="radio" value="nodairy" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='nodairy' />
+            <input type="radio" value="nodairy" onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='nodairy' />
               <label htmlFor='nodairy'>Dairy Free</label>
-            <input type="radio" value="norestrictions" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='norestrictions' />
+            <input type="radio" value="norestrictions" onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='norestrictions' />
               <label htmlFor='norestrictions'>None</label>
             <hr/>
-            <button className="btn center">Submit</button>
-          </form>
+            <h5>Food You Hate</h5>
+            <input type="text" ref={ n => this.exclude = n } placeholder={this.props.user.exclude}/>
+              <br/>
+           <button className="btn center">{this.props.route.title}</button>
+         </form>
       </div>
     )
   }
