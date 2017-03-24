@@ -12,7 +12,7 @@ class Meals extends React.Component {
     $.ajax({
       type: 'GET',
       headers: {
-          'X-Mashape-Key': 'MGqUlSz03Qmsho5Iu4oewmO0fgXdp1DllUYjsnURxaG8cbLwvN'
+          'X-Mashape-Key': 'nP6VWgqTHxmshBXx1YQWWI9WHzSJp1ADIYOjsndhN7Zw2hjyAS'
       },
       url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/mealplans/generate?diet=' + diet + '&exclude=' + exclude + '&targetCalories' + Calories,
       success: function(data){
