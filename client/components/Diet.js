@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {refreshLogin, setUser} from '../actions/auth';
 import {setFlash} from '../actions/flash';
 import {store} from '../store.js';
+import { someStyle, greatStyle } from './styles.scss';
 
 class Diet extends React.Component{
   
@@ -41,7 +42,7 @@ class Diet extends React.Component{
           <form onSubmit={this.handleSubmit}>
           <h4>Your goals</h4>
             <input type="radio" value="lose" required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='lose'/>
-              <label htmlFor='lose'>Lose Weight</label>
+              <label className={someStyle} htmlFor='lose'>Lose Weight</label>
             <input type="radio" value="gain"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='gain' />
               <label htmlFor='gain'>Gain Weight</label>
             <input type="radio" value="maintain"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='maintain'/>
