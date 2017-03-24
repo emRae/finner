@@ -34,10 +34,10 @@ router.post('/signup', (req, res) => {
 router.put('/about-diet', (req, res) => {
   console.log("got to the about diet route");
   console.log(req.body.userId);
-  let { goals, restrictions, activityLevel, userId } = req.body;
+  let { goals, restrictions, activityLevel, bmr, userId } = req.body;
   User.findByIdAndUpdate(
     userId,
-    { $set: { goals, restrictions, activityLevel} },
+    { $set: { goals, restrictions, activityLevel, bmr} },
     { new: true },
     (err, user) => {
       res.json(user);

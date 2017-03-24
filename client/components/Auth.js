@@ -16,7 +16,7 @@ class Auth extends React.Component {
       }
     }).done( user => {
       dispatch(refreshLogin(user));
-      router.push("/")
+      router.push("/dashboard")
     }).fail( err => {
       dispatch(setFlash(err.responseJSON.message, 'error'))
     });

@@ -7,6 +7,11 @@ module.exports = {
   entry: {
     application: path.join(__dirname, '../client/index.js')
   },
+  node: {
+    fs: 'empty',
+    net: "empty",
+    tls: "empty",
+  },
   output: {
     filename: "[name].js",
     chunkFilename: "[id].chunk.js",
