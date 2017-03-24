@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {refreshLogin, setUser} from '../actions/auth';
 import {setFlash} from '../actions/flash';
 import {store} from '../store.js';
+import { someStyle, greatStyle } from './styles.scss';
 
 class Diet extends React.Component{
   state = {email, password, weight, height, age, sex, goals, restrictions, activityLevel, exclude}
@@ -76,15 +77,10 @@ class Diet extends React.Component{
       <div>
         <h2 className="center">Settings</h2>
           <form onSubmit={this.handleSubmit}>
-            <input autoFocus type="email" ref={ n => this.email = n } placeholder={this.props.user.email} value={this.props.user.email} />
-            <input type="password" ref={n => this.password = n } placeholder="Password" value={this.props.user.password}/>
-            <input type="number" ref={n => this.weight =n } placeholder={this.props.user.weight} value={this.props.user.weight}/>
-            <input type="number" ref={n => this.height =n } placeholder={this.props.user.height} value={this.props.user.height}/>
-            <input type="number" ref={n => this.age =n } placeholder={this.props.user.age} value={this.props.user.age}/>
-             <h5>Your goals</h5>
-            <input type="radio" value="lose" onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='lose'/>
-              <label htmlFor='lose'>Lose Weight</label>
-            <input type="radio" value="gain" onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='gain' />
+          <h4>Your goals</h4>
+            <input type="radio" value="lose" required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='lose'/>
+              <label className={someStyle} htmlFor='lose'>Lose Weight</label>
+            <input type="radio" value="gain"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='gain' />
               <label htmlFor='gain'>Gain Weight</label>
             <input type="radio" value="maintain" onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='maintain'/>
               <label htmlFor='maintain'>Maintain Weight</label>
