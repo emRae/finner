@@ -30,39 +30,12 @@ class App extends React.Component {
   authLinks = () => {
     if (Object.keys(this.props.user).length) {
        let links = [
+         { name: 'Dashboard', path: '/dashboard'},
+         { name: 'Diet', path: '/about-diet'},
+         { name: 'Meals', path: '/meals'}
         ].map( (link, i) => {
           return this.link(i, link.name, link.path)
         });
-        links.push(
-            <li key="dashboard">
-              <a 
-                href="/dashboard"
-              >
-                Dashboard
-              </a>
-            </li>
-            
-        )
-        links.push(
-            <li key="diet">
-              <a 
-                href="/about-diet"
-              >
-                Diet
-              </a>
-            </li>
-            
-        )
-        links.push(
-            <li key="meals">
-              <a 
-                href="/meals"
-              >
-                Meals
-              </a>
-            </li>
-            
-        )
         links.push(
             <li key="logout">
               <a 

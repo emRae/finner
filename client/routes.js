@@ -22,18 +22,21 @@ const AdminRoutes = AdminAccess( (props) => props.children )
 export default (
  <Route>
    <Route path="/" component={App}>
+
     <Route path="signup" component={SignUp} title="Sign Up" />
     <Route path="signin" component={Auth} title="Sign In" />
+   
     <Route component={AuthenticatedRoutes}>
+        {/* PROTECTED BY AUTHENTICATION */}        
       <Route path='about-diet' component={Diet} title='About Your Diet' />
       <Route path='dashboard' component={Dashboard} title='Dashboard' />
       <Route path='meals' component={Meals} title='Meals'/>
-        {/* PROTECTED BY AUTHENTICATION */}        
       <Route component={AdminRoutes}>
           {/* PROTECTED BY ADMIN ACCESS */}
       </Route>
-     </Route>
-     <Route path="*" status={404} component={NotFound}/>
+    </Route>
+      
+    <Route path="*" status={404} component={NotFound}/>
    </Route>
  </Route>
 )
