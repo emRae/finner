@@ -7,26 +7,19 @@ import { someStyle, greatStyle } from './styles.scss';
 
 class Diet extends React.Component{
   state = {email, password, weight, height, age, sex, goals, restrictions, activityLevel, exclude}
+  componentDidMount() {
+    let {email, weight, height, age, sex, goals, restrictions, activityLevel, exclude, bmrOrig, bmrUpdate } = this.props.user;
+    this.setState({...this.props.user})
+  }
   handleSubmit= (e) => {
     e.preventDefault();
     let {props: {location, dispatch, router}} = this;
-    let {email, password, weight, height, age, sex, goals, restrictions, activityLevel, exclude, bmrOrig, bmrUpdate } = this.props.user;
 
     $.ajax({
       url:`/api/auth/about-diet`,
       type: 'PUT',
       data: { 
-        password: password.value, 
-        weight: weight.value, 
-        height: height.value, 
-        age: age.value, 
-        sex: this.state.sex,
-        bmrOrig: bmrOrig,
-        bmrUpdate: bmrUpdate,
-        goals: this.state.goals,
-        restrictions: this.state.restrictions,
-        activityLevel: this.state.activity,
-        exclude: exclude.value,
+        ...this.state
       }
     }).done( user => {
       // updates the store and react updates the UI with the new data
