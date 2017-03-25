@@ -10,13 +10,13 @@ class App extends React.Component {
     this.props.dispatch(refreshLogin());
   }
 
-  links = () => {
-    return [
-      { name: 'Home', path: '/' },
-    ].map( (link, i) => {
-      return this.link(i, link.name, link.path)
-    })
-  }
+  // links = () => {
+  //   return [
+  //     { name: 'Home', path: '/' },
+  //   ].map( (link, i) => {
+  //     return this.link(i, link.name, link.path)
+  //   })
+  // }
 
   link = (i, name, path) => {
     let activeClass = this.props.location.pathname === path ? 'active' : '';
@@ -52,6 +52,7 @@ class App extends React.Component {
       return links;
     } else {
       return [
+        { name: 'Home', path: '/' },
         { name: 'Sign In', path: '/signin' },
         { name: 'Sign Up', path: '/signup' },
       ].map( (link, i) => {
@@ -69,11 +70,11 @@ class App extends React.Component {
             <a href="#!" className="brand-logo">Finner</a>
             <a href="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></a>
             <ul className="right hide-on-med-and-down">
-              { this.links() }
+              { /* this.links() */ }
               { this.authLinks() }
             </ul>
             <ul className="side-nav" id="mobile">
-              { this.links() }
+              { /* this.links() */ }
               { this.authLinks() }
             </ul>
           </div>
