@@ -6,11 +6,12 @@ import {store} from '../store.js';
 import { someStyle, greatStyle } from './styles.scss';
 
 class Diet extends React.Component{
-  state = {email, password, weight, height, age, sex, goals, restrictions, activityLevel, exclude}
   componentDidMount() {
     let {email, weight, height, age, sex, goals, restrictions, activityLevel, exclude, bmrOrig, bmrUpdate } = this.props.user;
     this.setState({...this.props.user})
+    console.log(this.props.user.weight)
   }
+  
   handleSubmit= (e) => {
     e.preventDefault();
     let {props: {location, dispatch, router}} = this;
