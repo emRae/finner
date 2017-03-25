@@ -4,42 +4,50 @@ import {setFlash} from '../actions/flash';
 import unirest from 'unirest';
 
 class Meals extends React.Component {
-  
-  componentDidMount() {
-    let {email, weight, height, age, sex, goals, restrictions, activityLevel, exclude, bmrOrig, bmrUpdate } = this.props.user;
-    this.setState({...this.props.user});
-    let diet = this.props.user.restrictions
-    let exclusion = this.props.user.exclude
-    var bmr = this.props.user.bmrUpdate
-  
-    $.ajax({
-      type: 'GET',
-      headers: {
-          'X-Mashape-Key': 'nP6VWgqTHxmshBXx1YQWWI9WHzSJp1ADIYOjsndhN7Zw2hjyAS'
-      },
-      url: 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/mealplans/generate?diet=' + diet + '&exclude=' + exclusion + '&targetCalories' + bmr,
-      success: function(data){
-          console.log(data);
-          let test = JSON.parse(data.items[0].value);
-          console.log(test.title);
 
-          for (let i = 0; i <= data.items.length; i++) {
-            let recipe = JSON.parse(data.items.i)
-          }
-      }
-    });
+
+
+  handleSubmit = () => {
+    // let {email, weight, height, age, sex, goals, restrictions, activityLevel, exclude, bmrOrig, bmrUpdate } = this.props.user;
+    // this.setState({...this.props.user});
+    let diet = this.props.user.restrictions
+    // let exclusion = this.props.user.exclude
+    // var bmr = this.props.user.bmrUpdate
+
+    let calculateBmr = () => {
+        let {weight, height, age, sex } = this.props.user;
+        if ( sex === 'male') {
+          return parseInt(66 + (6.2 * weight) + (12.7 * height) - (6.76 * age));
+        } else {
+          return parseInt(655.1 + ( 4.35 * weight) + ( 4.7 * height ) - ( 4.7 * age ));
+        }
+    }
+    let bmr = calculateBmr();
+      $.ajax({
+        type: 'POST',
+        url: '/api/auth/meals',
+        data: {
+          diet,
+          exclusion: 'shellfish',
+          bmr
+        }
+      }).done( meals => {
+        this.setState({ meals })
+      }).fail(err => {
+        this.props.dispatch(setFlash(err, 'error'))
+      });
   }
 
   render() {
     return(
       <div>
           <h2 className="center">Your {this.props.route.title} for Today Are:</h2>
-            <form onSubmit={this.handleSubmit}>
+            <form>
               <p>I tried, and only got so far....</p>
               <p></p>
                 <br/>
-            <button className="btn center">{this.props.route.title}</button>
-          </form>
+            </form>
+            <button className="btn center" onClick={this.handleSubmit}>Meals</button>
         </div>
     )
   }

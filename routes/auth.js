@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const passport = require('passport');
+const client = require('../lib/client');
 
 const isAuthenticated = (req, res, next) => {
   if (req.user)
@@ -75,6 +76,14 @@ router.get('/user', isAuthenticated, (req,res) => {
 router.delete('/sign_out', (req, res) => {
   req.logout();
   res.status(200).json({});
+});
+
+router.post('/meals', (req, res) => {
+  let { diet, exclusion, bmr } = req.body;
+  client('/recipes/mealplans/generate', { method: 'GET', query: { diet, exclude: exclusion, targetCalories: bmr} }, (err, data) => {
+    return res.json(data);
+  })
+  
 });
 
 

@@ -10,7 +10,7 @@ class CaloriesGraph extends React.Component {
     // calorie budget - bmr
     // display calories remaining
 
-    console.log(bmr);
+    // console.log(bmr);
 
 
     return(

@@ -9,7 +9,7 @@ class Auth extends React.Component {
     let { email, password, props: { location, dispatch, router }} = this;
 
     $.ajax({
-      url: `/api/auth/${location.pathname}`,
+      url: `/api/auth${location.pathname}`,
       type: 'POST',
       data: { email: email.value, 
         password: password.value
