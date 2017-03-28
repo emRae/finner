@@ -40,8 +40,9 @@ router.post('/signup', (req, res) => {
 // udate the user with info and goals in the server database
 router.put('/about-diet', (req, res) => {
   console.log("got to the about diet route");
-  console.log(req.body.userId);
-  let { goals, restrictions, activityLevel, bmr, exclude, userId } = req.body;
+  console.log(req.body._id);
+  let { goals, restrictions, activityLevel, bmr, exclude } = req.body;
+  let userId = req.body._id;
   User.findByIdAndUpdate(
     userId,
     { $set: { goals, restrictions, activityLevel, bmr, exclude} },

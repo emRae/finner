@@ -3,19 +3,29 @@ import {connect} from 'react-redux';
 import {refreshLogin, setUser} from '../actions/auth';
 import {setFlash} from '../actions/flash';
 import {store} from '../store.js';
-import { someStyle, greatStyle } from './styles.scss';
+// import { someStyle, greatStyle } from './styles.scss';
 
 class Diet extends React.Component{
+  state = { }
+
   componentDidMount() {
-    let {email, weight, height, age, sex, goals, restrictions, activityLevel, exclude, bmrOrig, bmrUpdate } = this.props.user;
-    this.setState({...this.props.user})
-    console.log(this.props.user.weight)
+    this.setState({ ...this.props.user }, () => {
+      console.log(this.state)
+    })
   }
+
+  // comonentWillReceiveProps(nextProps) {
+  //   let { goals, restrictions, activityLevel } = this.state;
+  //   let { user } = nextProps;
+  //   if (goals !== user.goals || restrictions !== user.restrictions || activity !== user.activityLevel)
+  //     this.setState(...user)
+  // }
   
   handleSubmit= (e) => {
     e.preventDefault();
     let {props: {location, dispatch, router}} = this;
-
+    console.log("I got to handleSubmit");
+    console.log(this.state);
     $.ajax({
       url:`/api/auth/about-diet`,
       type: 'PUT',
@@ -63,8 +73,28 @@ class Diet extends React.Component{
   }
 
   handleChange = (e) => {
-    this.setState({[e.target.name]: e.target.value })
+    this.setState({[e.target.name]: e.target.id })
   }
+
+  renderGoals = () => {
+    return [
+      { id: 'lose', text: 'Lose Weight' },
+      { id: 'gain', text: 'Gain Weight' },
+      { id: 'maintain', text: 'Maintain Weight' },
+      { id: 'othergoal', text: 'Other' } ].map( radio => {
+      let { goals } = this.state;
+      let checked = goals === radio.id ? {checked: true} : {}
+      return (
+        <div>
+          <input type="radio" {...checked} key={radio.id} onChange={this.handleChange} name="goals" id={radio.id} />
+          <label htmlFor={radio.id}>{radio.text}</label>
+        </div>
+      )
+    });
+  }
+
+
+
 
   render() {
     return (
@@ -72,14 +102,7 @@ class Diet extends React.Component{
         <h2 className="center">Settings</h2>
           <form onSubmit={this.handleSubmit}>
           <h4>Your goals</h4>
-            <input type="radio" value="lose" required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='lose'/>
-              <label className={someStyle} htmlFor='lose'>Lose Weight</label>
-            <input type="radio" value="gain"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='gain' />
-              <label htmlFor='gain'>Gain Weight</label>
-            <input type="radio" value="maintain" onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='maintain'/>
-              <label htmlFor='maintain'>Maintain Weight</label>
-            <input type="radio" value="othergoal" onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='othergoal' />
-              <label htmlFor='othergoal'>Other</label>
+            { this.renderGoals() }
             <h5>Your activity level</h5>
             <input type="radio" value="low" onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='low'/>
               <label htmlFor='low'>Low Activity</label>
