@@ -76,7 +76,7 @@ class SignUp extends React.Component {
   }
 
   updateBmr = (bmr) => {
-    return bmr + + this.numActivity(this.state.activity) + this.numGoals(this.state.goals)
+    return bmr + this.numActivity(this.state.activity) + this.numGoals(this.state.goals)
   }
 
   handleChange = (e) => {
