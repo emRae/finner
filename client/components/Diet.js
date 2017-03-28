@@ -24,8 +24,6 @@ class Diet extends React.Component{
   handleSubmit= (e) => {
     e.preventDefault();
     let {props: {location, dispatch, router}} = this;
-    console.log("I got to handleSubmit");
-    console.log(this.state);
     $.ajax({
       url:`/api/auth/about-diet`,
       type: 'PUT',
@@ -93,8 +91,23 @@ class Diet extends React.Component{
     });
   }
 
-
-
+  renderActivityLevel = () => {
+    return [
+      { id: 'low', text: 'Low Activity' },
+      { id: 'medium', text: 'Medium Activity' },
+      { id: 'high', text: 'High Activity' },
+      { id: 'otheractivity', text: 'Other' } ].map( radio => {
+      let { activityLevel } = this.state;
+      let checked = activityLevel === radio.id ? {checked: true} : {}
+      return (
+        <div>
+          <input type="radio" {...checked} key={radio.id} onChange={this.handleChange} name="activity" id={radio.id} />
+          <label htmlFor={radio.id}>{radio.text}</label>
+        </div>
+      )
+    });
+  }
+  
 
   render() {
     return (
@@ -102,17 +115,11 @@ class Diet extends React.Component{
         <h2 className="center">Settings</h2>
           <form onSubmit={this.handleSubmit}>
           <h4>Your goals</h4>
-            { this.renderGoals() }
-            <h5>Your activity level</h5>
-            <input type="radio" value="low" onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='low'/>
-              <label htmlFor='low'>Low Activity</label>
-            <input type="radio" value="medium" onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='medium' />
-              <label htmlFor='medium'>Medium Activity</label>
-            <input type="radio" value="high" onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='high'/>
-              <label htmlFor='high'>High Activity</label>
-            <input type="radio" value="otheractivity" onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='otheractivity' />
-              <label htmlFor='otheractivity'>Other</label>
-            <h5>Your dietary restrictions</h5>
+          { this.renderGoals() }
+          <h5>Your activity level</h5>
+          { this.renderActivityLevel() }
+          <h5>Your dietary restrictions</h5>
+
             <input type="radio" value="vegetarian" onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='vegetarian'/>
               <label htmlFor='vegetarian'>Vegetarian</label>
             <input type="radio" value="vegan" onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='vegan' />
