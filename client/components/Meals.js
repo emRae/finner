@@ -6,29 +6,29 @@ import Meal from './Meal';
 
 class Meals extends React.Component {
 
-  // componentDidMount() {
-  //     let {email, weight, height, age, sex, goals, restrictions, activityLevel, exclude, bmrOrig, bmrUpdate } = this.props.user;
-  //     // this.setState({...this.props.user});
-  //     let diet = this.props.user.restrictions
-  //     let exclusion = this.props.user.exclude
-  //     let bmr = this.props.user.bmrUpdate
+  componentDidMount() {
+      let {email, weight, height, age, sex, goals, restrictions, activityLevel, exclude, bmrOrig, bmrUpdate } = this.props.user;
+      // this.setState({...this.props.user});
+      let diet = this.props.user.restrictions
+      let exclusion = this.props.user.exclude
+      let bmr = this.props.user.bmrUpdate
 
-  //       $.ajax({
-  //         type: 'POST',
-  //         url: '/api/auth/meals',
-  //         data: {
-  //           diet,
-  //           exclusion: 'shellfish',
-  //           bmr
-  //         }
-  //       }).done( meals => {
-  //         this.setState({ meals })
-  //         let meal = JSON.parse(meals.items[0].value)
-  //         console.log(meal.title);
-  //       }).fail(err => {
-  //         this.props.dispatch(setFlash(err, 'error'))
-  //       });
-  //   }
+        $.ajax({
+          type: 'POST',
+          url: '/api/auth/meals',
+          data: {
+            diet,
+            exclusion: 'shellfish',
+            bmr
+          }
+        }).done( meals => {
+          this.setState({ meals })
+          let meal = JSON.parse(meals.items[0].value)
+          console.log(meal.title);
+        }).fail(err => {
+          this.props.dispatch(setFlash(err, 'error'))
+        });
+    }
 
   handleSubmit = () => {
     let {email, weight, height, age, sex, goals, restrictions, activityLevel, exclude, bmrOrig, bmrUpdate } = this.props.user;
@@ -48,6 +48,9 @@ class Meals extends React.Component {
       }).done( meals => {
         this.setState({ meals })
         let meal = JSON.parse(meals.items[0].value)
+        return(
+          <Meal />
+        )
         console.log(meal.title);
       }).fail(err => {
         this.props.dispatch(setFlash(err, 'error'))
@@ -68,7 +71,6 @@ class Meals extends React.Component {
     return(
       <div>
           <h2 className="center">Your {this.props.route.title} for Today Are:</h2>
-            <Meal />
             <form>
               <p></p>
                 <br/>
