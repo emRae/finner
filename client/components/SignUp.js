@@ -4,16 +4,14 @@ import { refreshLogin, sendData } from '../actions/auth';
 import { setFlash } from '../actions/flash';
 
 class SignUp extends React.Component {
-  state = { sex: '', bmr: 0}
+  state = { sex: '', bmr: 0, activity: ''}
   
   handleSubmit = (e) => {
     e.preventDefault();
-    let { email, password, weight, height, age, sex, goals, restrictions, activityLevel, exclude, props: { location, dispatch, router }} = this;
-    let bmrOrig = this.calculateBmr(weight.value, height.value, age.value);
-    let bmrUpdate = this.updateBmr(bmrOrig);
-
-    console.log(bmrUpdate)
-
+    let { email, password, weight, height, age, sex, goals, restrictions, activity, props: { location, dispatch, router }} = this;
+    let bmr = this.calculateBmr(weight.value, height.value, age.value, this.state.activity, this.state.goals );
+    this.setState({[bmr]: bmr });
+    
     $.ajax({
       url: `/api/auth${location.pathname}`,
       type: 'POST',
@@ -23,12 +21,10 @@ class SignUp extends React.Component {
         height: height.value, 
         age: age.value, 
         sex: this.state.sex,
-        bmrOrig: bmrOrig,
-        bmrUpdate: bmrUpdate,
         goals: this.state.goals,
         restrictions: this.state.restrictions,
-        activityLevel: this.state.activity,
-        exclude: exclude.value,
+        activity: this.state.activity,
+        bmr: bmr
       }
     }).done( user => {
       dispatch(refreshLogin(user));
@@ -38,7 +34,7 @@ class SignUp extends React.Component {
     });
   }
 
-    numGoals = (goals) => {
+  numGoals = (goals) => {
     switch (goals) {
       case "lose":
         return -300;
@@ -67,16 +63,18 @@ class SignUp extends React.Component {
     }
   }
 
-  calculateBmr = (weight, height, age) => {
-    if (this.state.sex === 'male') {
-      return 66 + (6.2 * weight) + (12.7 * height) - (6.76 * age) 
-    } else {
-      return 655.1 + ( 4.35 * weight) + ( 4.7 * height ) - ( 4.7 * age )
-    }
-  }
+// Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) - (6.8 x age in years)
+// Women: BMR = 655 + (4.35 x weight in pounds) + (4.7 x height in inches) - (4.7 x age in years)
+// Women: BMR = 655 + (4.35 x 125 ) + (4.7 x 65 ) - (4.7 x 30 ) + -300 + 800 
+// Women: BMR = 655 + ( 543.75 ) + ( 305.5 ) - ( 141 ) + -300 + 800 = 1863.25
+// Women: BMR = 655 + ( 543.75 ) + ( 305.5 ) - ( 141 ) =  1363.25 (should equal 1363.25)
 
-  updateBmr = (bmr) => {
-    return bmr + this.numActivity(this.state.activity) + this.numGoals(this.state.goals)
+  calculateBmr = (weight, height, age, activity, goals) => {
+    if (this.state.sex === 'male') {
+      return 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age) + this.numActivity(activity) + this.numGoals(goals)
+    } else {
+      return 655 + ( 4.35 * weight) + ( 4.7 * height ) - ( 4.7 * age ) + this.numActivity(activity) + this.numGoals(goals)
+    }
   }
 
   handleChange = (e) => {
@@ -131,10 +129,7 @@ class SignUp extends React.Component {
             <input type="radio" value="norestrictions" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='norestrictions' />
               <label htmlFor='norestrictions'>None</label>
             <hr/>
-            <h3>Food You Hate</h3>
-            <input type="text" ref={ n => this.exclude = n } placeholder="Icky" />
-              <br/>
-           <button className="btn center">{this.props.route.title}</button>
+           <button className="btn center"> Sign Up</button>
          </form>
       </div>
     )

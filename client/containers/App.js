@@ -80,6 +80,7 @@ class App extends React.Component {
           </div>
         </nav>
         <Flash />
+        <a href="">I'm a link</a>
         {this.props.children}
       </div>
     );

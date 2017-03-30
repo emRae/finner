@@ -12,23 +12,21 @@ const isAuthenticated = (req, res, next) => {
 }
 
 router.post('/signup', (req, res) => {
-  let { email, password } = req.body;
+  let { email, password, weight, age, height, sex, goals, restrictions, activity, bmr } = req.body;
+  console.log(activity, bmr);
   User.register(new User({username: email}), password, (err, user) => {
     if (err)
       return res.status(500).json(err);
     // get values from req.body
     // user.thing = req.body.thing
-    user.weight = req.body.weight,
-    user.age = req.body.age,
-    user.height = req.body.height,
-    user.sex = req.body.sex,
-    user.bmrOrig = req.body.bmrOrig,
-    user.bmrUpdate = req.body.bmrUpdate,
-    user.exclude = req.body.exclude
-    user.goals = req.body.goals,
-    user.restrictions = req.body.restrictions,
-    user.activityLevel = req.body.activityLevel,
-    user.exclude = req.body.exclude
+    user.weight = weight,
+    user.age = age,
+    user.height = height,
+    user.sex = sex,
+    user.goals = goals,
+    user.restrictions = restrictions,
+    user.activity = activity,
+    user.bmr = bmr
     user.save( (err, user) => {
       if (err)
         return res.status(500).json(err);
@@ -41,11 +39,11 @@ router.post('/signup', (req, res) => {
 router.put('/about-diet', (req, res) => {
   console.log("got to the about diet route");
   console.log(req.body._id);
-  let { goals, restrictions, activityLevel, bmr, exclude } = req.body;
+  let { goals, restrictions, activity, bmr } = req.body;
   let userId = req.body._id;
   User.findByIdAndUpdate(
     userId,
-    { $set: { goals, restrictions, activityLevel, bmr, exclude} },
+    { $set: { goals, restrictions, activity, bmr} },
     { new: true },
     (err, user) => {
       res.json(user);
