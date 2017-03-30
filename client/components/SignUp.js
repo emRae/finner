@@ -10,7 +10,8 @@ class SignUp extends React.Component {
     e.preventDefault();
     let { email, password, weight, height, age, sex, goals, restrictions, activity, props: { location, dispatch, router }} = this;
     let bmr = this.calculateBmr(weight.value, height.value, age.value, this.state.activity, this.state.goals );
-    this.setState({[bmr]: bmr });
+    this.setState({bmr: bmr });
+    console.log(bmr)
     
     $.ajax({
       url: `/api/auth${location.pathname}`,
