@@ -8,6 +8,7 @@ html
     script(src="/jquery/jquery.min.js")
     script(src="/materialize/js/materialize.min.js")
     link(href="/materialize/css/materialize.min.css" rel="stylesheet")
+    - src = process.env.NODE_ENV === 'production' ? '/vendor.js' : 'http://localhost:8080/vendor.js'
     //
       vizuly css and javascript
       link(rel='stylesheet', href='vendor/css/vizuly.css')
