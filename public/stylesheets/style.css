@@ -1,3 +1,49 @@
+/* =======================================
+
+Component Styles
+
+======================================= */
+
+
+/* Calories Graph
+--------------------------------------- */
+
+.calorie-graph{
+  margin:2em 0;
+  padding:1em;
+}
+
+.num-large{
+  font-size:6em;
+}
+
+.cal-eaten-num{
+  color:#ef6c00;
+  line-height:1;
+}
+
+.cal-eaten-text{
+  font-size: 1.25em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.cal-left{
+    background-color: rgba(255,255,255, 0.5);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    text-align: center;
+    margin: 0 auto;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+
+
+/* Boostrap Alerts
+---------------------------------------- */
+
 .alert {
   padding: 15px;
   margin-bottom: 20px;

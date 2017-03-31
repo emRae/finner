@@ -66,15 +66,12 @@ class SignUp extends React.Component {
 
 // Men: BMR = 66 + (6.23 x weight in pounds) + (12.7 x height in inches) - (6.8 x age in years)
 // Women: BMR = 655 + (4.35 x weight in pounds) + (4.7 x height in inches) - (4.7 x age in years)
-// Women: BMR = 655 + (4.35 x 125 ) + (4.7 x 65 ) - (4.7 x 30 ) + -300 + 800 
-// Women: BMR = 655 + ( 543.75 ) + ( 305.5 ) - ( 141 ) + -300 + 800 = 1863.25
-// Women: BMR = 655 + ( 543.75 ) + ( 305.5 ) - ( 141 ) =  1363.25 (should equal 1363.25)
 
   calculateBmr = (weight, height, age, activity, goals) => {
     if (this.state.sex === 'male') {
-      return 66 + (6.23 * weight) + (12.7 * height) - (6.8 * age) + this.numActivity(activity) + this.numGoals(goals)
+      return parseInt(66 + (6.23 * weight) + (12.7 * height) - (6.8 * age) + this.numActivity(activity) + this.numGoals(goals))
     } else {
-      return 655 + ( 4.35 * weight) + ( 4.7 * height ) - ( 4.7 * age ) + this.numActivity(activity) + this.numGoals(goals)
+      return parseInt(655 + ( 4.35 * weight) + ( 4.7 * height ) - ( 4.7 * age ) + this.numActivity(activity) + this.numGoals(goals))
     }
   }
 

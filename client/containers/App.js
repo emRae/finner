@@ -18,7 +18,7 @@ class App extends React.Component {
   //   })
   // }
 
-  link = (i, name, path) => {
+  link = (i, name, path, icon ) => {
     let activeClass = this.props.location.pathname === path ? 'active' : '';
     return (
       <li key={i} className={activeClass}>
@@ -31,7 +31,7 @@ class App extends React.Component {
     if (Object.keys(this.props.user).length) {
        let links = [
          { name: 'Dashboard', path: '/dashboard'},
-         { name: 'Diet', path: '/about-diet'},
+         { name: 'Settings', path: '/about-diet'},
          { name: 'Meals', path: '/meals'}
         ].map( (link, i) => {
           return this.link(i, link.name, link.path)
@@ -80,7 +80,6 @@ class App extends React.Component {
           </div>
         </nav>
         <Flash />
-        <a href="">I'm a link</a>
         {this.props.children}
       </div>
     );
