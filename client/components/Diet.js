@@ -44,7 +44,7 @@ class Diet extends React.Component{
       // updates the store and react updates the UI with the new data
       dispatch(refreshLogin(user));
       router.push("dashboard");
-      dispatch(setFlash('you updated your preferences', 'success'));
+      dispatch(setFlash('Your settings have been updated!', 'success'));
     }).fail(err => {
       dispatch(setFlash(err.responseJSON.message, 'error'))
     });
