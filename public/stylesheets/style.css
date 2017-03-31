@@ -1,3 +1,8 @@
+
+nav ul li.active{
+  background-color: rgba(224, 242, 241, 0.3) !important;
+}
+
 /* =======================================
 
 Component Styles
