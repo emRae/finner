@@ -12,10 +12,6 @@ class Dashboard extends React.Component {
     return(
     <div className="container">
       <CaloriesGraph />
-      <h5>Daily Caloric: {parseInt(this.props.user.bmr)}</h5>
-      <p>Your goal is to: {goals}</p>
-      <p>Your activity level is: {activityLevel}</p>
-      <p>Your diet is based on: {restrictions}</p>
     </div>
     )
   }

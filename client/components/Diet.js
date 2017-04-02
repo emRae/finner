@@ -146,7 +146,7 @@ class Diet extends React.Component{
 
   render() {
     return (
-      <div>
+      <div className="container">
         <h2 className="center">Settings</h2>
           <form onSubmit={this.handleSubmit}>
           <h5>Your goals</h5>

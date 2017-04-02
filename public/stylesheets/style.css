@@ -1,3 +1,31 @@
+nav .brand-logo{
+    font-family: 'Maven Pro', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    left:65px;
+}
+
+nav .brand-logo:before{
+  content:'';
+  display:inline-block;
+  width:50px;
+  height:50px;
+  background-image: url(../images/logo-finner.png);
+  background-repeat:no-repeat;
+  background-size:50px 50px;
+  position: absolute;
+  left: -55px;
+  top: 7px;
+}
+
+@media 
+(-webkit-min-device-pixel-ratio: 2), 
+(min-resolution: 192dpi) { 
+  /* Retina-specific stuff here */
+  nav .brand-logo:before{
+    background-image: url(../images/logo-finner@2x.png);
+  }
+}
 
 nav ul li.active{
   background-color: rgba(224, 242, 241, 0.3) !important;
@@ -34,7 +62,7 @@ Component Styles
 }
 
 .cal-left{
-    background-color: rgba(255,255,255, 0.5);
+    background-color: rgba(255,255,255, 0.7);
     width: 200px;
     height: 200px;
     border-radius: 50%;
@@ -43,6 +71,18 @@ Component Styles
     display:flex;
     flex-direction:column;
     justify-content: center;
+    border: 3px solid #fff;
+}
+
+.cal-left-num{
+  line-height:1;
+  font-size:4.25em;
+  color: #8bc34a;
+  text-shadow: 1px 1px rgba(0,0,0,0.3);
+}
+
+.cal-left p{
+  margin:0;
 }
 
 
