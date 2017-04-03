@@ -4,6 +4,11 @@ import { logout, refreshLogin } from '../actions/auth';
 import { connect } from 'react-redux';
 import Flash from '../components/Flash';
 
+
+const divStyle = {
+  color: '#ffffff',
+  backgroundImage: 'url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQqGyNL1W2DBFV4MpqBgsAYwtcPKqOMr2iDOFRCrb8wSuDLu9AE)'
+}
 class App extends React.Component {
   componentDidMount() {
     $(".button-collapse").sideNav({ closeOnClick: true });
@@ -64,24 +69,39 @@ class App extends React.Component {
 
   render() {
     return (
+      <div style={divStyle}>
+        <div>
+          <nav>
+            <div className="nav-wrapper grey darken-4">
+              <a href="#!" className="brand-logo">Finner</a>
+              <a href="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></a>
+              <ul className="right hide-on-med-and-down">
+                { /* this.links() */ }
+                { this.authLinks() }
+              </ul>
+              <ul className="side-nav" id="mobile">
+                { /* this.links() */ }
+                { this.authLinks() }
+              </ul>
+            </div>
+          </nav>
+          <Flash />
+          {this.props.children}
+        </div>
       <div>
-        <nav>
-          <div className="nav-wrapper grey darken-4">
-            <a href="#!" className="brand-logo">Finner</a>
-            <a href="#" data-activates="mobile" className="button-collapse"><i className="material-icons">menu</i></a>
-            <ul className="right hide-on-med-and-down">
-              { /* this.links() */ }
-              { this.authLinks() }
-            </ul>
-            <ul className="side-nav" id="mobile">
-              { /* this.links() */ }
-              { this.authLinks() }
-            </ul>
-          </div>
-        </nav>
-        <Flash />
-        {this.props.children}
-      </div>
+        <h1  className= 'center'> Welcome to Finner! </h1>
+          <br/>
+        <h4  className= 'center'> What is Finner? </h4>
+          <p  className= 'center'> Finner is a health and wellness application to help you keep track of calories</p>
+          <p  className= 'center'>  and suggest meals that fit within your diet and personal preferences.</p>
+          <br/>
+        <h4 className= 'center'> How does it work? </h4>
+          <p className= 'center'> When you sign up we'll ask you a few basic questions about you to determine your BMR.</p>
+          <p className= 'center'> Then we use that information to find your recommended daily caloric intake. From there</p>
+          <p className= 'center'> we're able to take all of that information and generate a meal plan for you </p>
+          <p className= 'center'> that fits within your dietary needs and personal preferences. </p>
+      </div>    
+       </div> 
     );
   }
 }
