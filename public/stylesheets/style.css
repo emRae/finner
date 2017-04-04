@@ -118,6 +118,23 @@ Component Styles
 }
 
 
+/* Home
+--------------------------------------- */
+
+#index-banner{
+  height: 350px !important;
+	background:
+		-webkit-linear-gradient(45deg, hsla(172, 96%, 49%, 1) 0%, hsla(172, 96%, 49%, 0) 70%),
+		-webkit-linear-gradient(315deg, hsla(202, 98%, 46%, 1) 10%, hsla(202, 98%, 46%, 0) 80%),
+		-webkit-linear-gradient(225deg, hsla(139, 97%, 50%, 1) 10%, hsla(139, 97%, 50%, 0) 80%),
+		-webkit-linear-gradient(135deg, hsla(75, 98%, 41%, 1) 100%, hsla(75, 98%, 41%, 0) 70%);
+	background:
+		linear-gradient(45deg, hsla(172, 96%, 49%, 1) 0%, hsla(172, 96%, 49%, 0) 70%),
+		linear-gradient(135deg, hsla(202, 98%, 46%, 1) 10%, hsla(202, 98%, 46%, 0) 80%),
+		linear-gradient(225deg, hsla(139, 97%, 50%, 1) 10%, hsla(139, 97%, 50%, 0) 80%),
+		linear-gradient(315deg, hsla(75, 98%, 41%, 1) 100%, hsla(75, 98%, 41%, 0) 70%);
+}
+
 /* Boostrap Alerts
 ---------------------------------------- */
 

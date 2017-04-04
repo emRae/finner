@@ -56,7 +56,7 @@ class Meals extends React.Component {
       )
     })
     return(
-      <div>
+      <div className="container">
           <h2 className="center">Your {this.props.route.title} for Today Are:</h2>
             <div>{recipes}</div>
             <form onSubmit={this.handleSubmit}>
