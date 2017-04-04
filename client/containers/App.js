@@ -55,7 +55,7 @@ class App extends React.Component {
       return links;
     } else {
       return [
-        { name: 'Home', path: '/home' },
+        { name: 'Home', path: '/' },
         { name: 'Sign In', path: '/signin' },
         { name: 'Sign Up', path: '/signup' },
       ].map( (link, i) => {
