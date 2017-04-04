@@ -46,17 +46,19 @@ Component Styles
   padding:1em;
 }
 
-.num-large{
-  font-size:6em;
-}
+.calorie-graph .row{margin-bottom:0;}
+
+.calorie-graph .calories-consumed{padding-left:0.5em;}
 
 .cal-eaten-num{
   color:#ef6c00;
   line-height:1;
+  font-size:5em;
 }
 
 .cal-eaten-text{
-  font-size: 1.25em;
+  display:block;
+  font-size: 1.15em;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -83,6 +85,36 @@ Component Styles
 
 .cal-left p{
   margin:0;
+  text-transform: uppercase;
+  color: #666;
+}
+
+.calories-consumed p{
+  color:#666;
+}
+
+/* Joke
+--------------------------------------- */
+
+.joke h5{font-style:italic;}
+
+.joke blockquote{
+  position:relative;
+  border-left: 0;
+    font-size: 2em;
+    color: #666;
+    font-style: italic;
+    padding: 1em 2em;
+}
+
+.joke blockquote:before{
+    content: "“";
+    font-size: 5em;
+    color: #ef6c00;
+    position: absolute;
+    left: -25px;
+    top: -50px;
+    font-family: Georgia, Times, Times New Roman, serif;
 }
 
 
