@@ -8,7 +8,7 @@ class Dashboard extends React.Component {
 
   render() {
     
-    let { weight, height, age, goals, activityLevel, restrictions, bmrUpdate } = this.props.user;
+    let { weight, height, age, goals, activityLevel, restrictions } = this.props.user;
     return(
     <div className="container">
       <CaloriesGraph />
