@@ -8,7 +8,8 @@ import NotFound from './components/NotFound';
 import SignUp from'./components/SignUp';
 import Diet from './components/Diet';
 import Dashboard from './components/Dashboard';
-import Meals from './components/Meals'
+import Meals from './components/Meals';
+import Home from './components/Home';
 
 const AdminAccess = UserAuthWrapper({
   authSelector: state => state.user,
@@ -22,7 +23,7 @@ const AdminRoutes = AdminAccess( (props) => props.children )
 export default (
  <Route>
    <Route path="/" component={App}>
-
+    <Route path="home" component={Home} title="Home"/>
     <Route path="signup" component={SignUp} title="Sign Up" />
     <Route path="signin" component={Auth} title="Sign In" />
    
