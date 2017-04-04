@@ -22,6 +22,7 @@ class App extends React.Component {
   //     return this.link(i, link.name, link.path)
   //   })
   // }
+  // style={}
 
   link = (i, name, path, icon ) => {
     let activeClass = this.props.location.pathname === path ? 'active' : '';
@@ -69,7 +70,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div style={divStyle}>
+      <div >
         <div>
           <nav>
             <div className="nav-wrapper grey darken-4">

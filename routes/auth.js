@@ -85,5 +85,13 @@ router.post('/meals', (req, res) => {
   
 });
 
+router.get('/joke', (req, res) => {
+  console.log("I got to the joke route!");
+  client('/food/jokes/random', { method: 'GET', query: {} }, (err, data) => {
+    return res.json(data);
+  });
+  
+});
+
 
 module.exports = router;
