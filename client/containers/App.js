@@ -19,6 +19,7 @@ class App extends React.Component {
   //     return this.link(i, link.name, link.path)
   //   })
   // }
+  // style={}
 
   link = (i, name, path, icon ) => {
     let activeClass = this.props.location.pathname === path ? 'active' : '';
