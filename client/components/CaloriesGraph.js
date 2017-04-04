@@ -12,6 +12,10 @@ class CaloriesGraph extends React.Component {
 
     // console.log(bmr);
 
+    let barStyle = {
+      width: 70
+    }
+
 
     return(
     <div className="calorie-graph teal lighten-5">
@@ -19,7 +23,9 @@ class CaloriesGraph extends React.Component {
         <div className="col m12 l7">
           <div className="calories-consumed">
             <p><span className="cal-eaten-num num-large">1,000</span><span className="cal-eaten-text">Calories Consumed Today</span></p>
-            <div className="cal-eaten-bar"></div>
+            <div className="progress cal-eaten-bar">
+                <div className="determinate" style={ barStyle }></div>
+            </div>
             <p>Budget <span className="cal-bmr">{ bmr.toLocaleString('en-US', {maximumFractionDigits: 0}) }</span> Calories</p>
           </div>
         </div>
