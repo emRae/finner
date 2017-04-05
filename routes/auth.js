@@ -50,6 +50,20 @@ router.put('/about-diet', (req, res) => {
   });
 });
 
+router.put('/meals', (req, res) => {
+  console.log("got to meals");
+  console.log(req.body._id);
+  let { meal } = req.body;
+  let userId = req.body._id;
+  User.findByIdAndUpdate(
+    userId,
+    { $set: { meal } },
+    { new: true },
+    (err, user) => {
+      res.json(user);
+  });
+});
+
 router.post('/signin', (req, res) => {
  let { email, password } = req.body
  User.findOne({ username: req.body.email}, (err, user) => {

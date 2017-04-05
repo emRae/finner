@@ -14,6 +14,7 @@ let User = new Schema({
   activity: {type: String},
   goals: {type: String},
   restrictions: {type: String},
+  meal: {type: Object}
 });
 
 User.plugin(passportLocalMongoose);

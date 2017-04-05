@@ -1,11 +1,11 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {setFlash} from '../actions/flash';
+import { connect } from 'react-redux';
+import { setFlash } from '../actions/flash';
+import { refreshLogin, sendData } from '../actions/auth';
 import unirest from 'unirest';
-import Meal from './Meal';
 
 class Meals extends React.Component {
-  state = {data:{results:[], cuisine: '', query: '', number: '', type:''}}
+  state = {data:{results:[], cuisine: '', query: '', number: '', type:''}, meals:{}}
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -68,13 +68,54 @@ class Meals extends React.Component {
     }
   }
 
+  addMeal = (id) => {
+    let {location, dispatch, router} = this.props;
+    let meal = this.state.data.results.filter(meal => meal.id === id)[0];
+    console.log(meal)
+
+    $.ajax({
+      url:`/api/auth/meals`,
+      type: 'PUT',
+      data: {
+        _id: this.props.user._id,
+        meal
+       }
+    }).done( user => {
+      console.log(user);
+      dispatch(refreshLogin(user));
+      router.push("dashboard");
+      dispatch(setFlash('Your meal has been added!', 'success'));
+    }).fail(err => {
+      dispatch(setFlash(err.responseJSON.message, 'error'))
+    });
+  }
+
   render() {
     console.log(this.state.data.results)
     let recipes = this.state.data.results.map( recipe => {
       return(
-          <div key={recipe.id}><a href={recipe.sourceUrl} target="_blank">{recipe.title}</a></div>
+          <div key={recipe.id} className="row">
+              <div className="col s12 m6">
+                <div className="card blue-grey darken-1">
+                  <div className="card-content white-text">
+                    <span className="card-title">{recipe.title}</span>
+                    <h5>From {recipe.creditText}</h5>
+                    <p>Carbs: {recipe.carbs} | Protein: {recipe.protein} | Fat: {recipe.fat}</p>
+                    <br/>
+                    <img style={{width:'100%'}} src={recipe.image}/>
+                  </div>
+                  <div className="card-action">
+                    <a href={recipe.sourceUrl} target="_blank">Get the Recipe</a>
+                  </div>
+                  <div className="card-action">
+                    <a onClick={() => this.addMeal(recipe.id)}>Add to Meals</a>
+                  </div>
+                </div>
+              </div>
+            </div>
       )
     })
+
     return(
       <div className="container">
           <h2 className="center">Your {this.props.route.title} for Today Are:</h2>
