@@ -9,6 +9,7 @@ class Meals extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+    let calories = this.mealNum(this.state.type)*this.props.user.bmr;
     let recipe = 'true';
     let cuisine = this.state.cuisine;
     let excludeIngredients = 'peanut';
@@ -17,7 +18,7 @@ class Meals extends React.Component {
     let instructionsRequired = 'false';
     let intolerances = '';
     let limitLicense = 'false';
-    let maxCalories = 500;
+    let maxCalories = calories;
     let maxCarbs = 200;
     let maxFat = 100;
     let maxProtein = 100;
@@ -31,7 +32,7 @@ class Meals extends React.Component {
     let ranking = 1;
     let type = this.state.type;
 
-      $.ajax({
+    $.ajax({
         type: 'GET',
         headers: {
             'X-Mashape-Key': 'nP6VWgqTHxmshBXx1YQWWI9WHzSJp1ADIYOjsndhN7Zw2hjyAS'
@@ -46,6 +47,25 @@ class Meals extends React.Component {
 
   handleChange = (e) => {
     this.setState({ [e.target.name]: e.target.value })
+  }
+
+  mealNum = (type) => {
+    switch (type) {
+      case 'breakfast':
+        return 0.25;
+        break;
+      case 'lunch':
+        return 0.30;
+        break;
+      case 'dinner':
+        return 0.35;
+        break;
+      case 'snack':
+        return 0.10;
+        break;
+      default:
+        return 0;
+    }
   }
 
   render() {
@@ -90,48 +110,3 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps)(Meals);
 
- 
-
-
-    // let {email, weight, height, age, sex, goals, restrictions, activityLevel, exclude, bmrOrig, bmrUpdate } = this.props.user;
-    // // this.setState({...this.props.user});
-    // let diet = this.props.user.restrictions
-    // let exclusion = this.props.user.exclude
-    // let bmr = this.props.user.bmrUpdate
-
-    //   $.ajax({
-    //     type: 'POST',
-    //     url: '/api/auth/meals',
-    //     data: {
-    //       diet,
-    //       exclusion: 'shellfish',
-    //       bmr
-    //     }
-    //   }).done( meals => {
-    //     this.setState({ meals })
-    //     let meal = JSON.parse(meals.items[0].value)
-    //     return(
-    //       <Meal />
-    //     )
-    //     console.log(meal.title);
-    //   }).fail(err => {
-    //     this.props.dispatch(setFlash(err, 'error'))
-    //   });
-
-      // componentDidMount() {
-  //       $.ajax({
-  //         type: 'POST',
-  //         url: '/api/auth/meals',
-  //         data: {
-  //           diet,
-  //           exclusion: 'shellfish',
-  //           bmr
-  //         }
-  //       }).done( meals => {
-  //         this.setState({ meals })
-  //         let meal = JSON.parse(meals.items[0].value)
-  //         console.log(meal.title);
-  //       }).fail(err => {
-  //         this.props.dispatch(setFlash(err, 'error'))
-  //       });
-  //   }
