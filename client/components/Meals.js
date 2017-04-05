@@ -52,7 +52,7 @@ class Meals extends React.Component {
     console.log(this.state.data.results)
     let recipes = this.state.data.results.map( recipe => {
       return(
-          <div key={recipe.id}>{recipe.title}</div>
+          <div key={recipe.id}><a href={recipe.sourceUrl} target="_blank">{recipe.title}</a></div>
       )
     })
     return(
