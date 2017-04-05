@@ -46,17 +46,19 @@ Component Styles
   padding:1em;
 }
 
-.num-large{
-  font-size:6em;
-}
+.calorie-graph .row{margin-bottom:0;}
+
+.calorie-graph .calories-consumed{padding-left:0.5em;}
 
 .cal-eaten-num{
   color:#ef6c00;
   line-height:1;
+  font-size:5em;
 }
 
 .cal-eaten-text{
-  font-size: 1.25em;
+  display:block;
+  font-size: 1.15em;
   text-transform: uppercase;
   font-weight: bold;
 }
@@ -83,8 +85,55 @@ Component Styles
 
 .cal-left p{
   margin:0;
+  text-transform: uppercase;
+  color: #666;
 }
 
+.calories-consumed p{
+  color:#666;
+}
+
+/* Joke
+--------------------------------------- */
+
+.joke h5{font-style:italic;}
+
+.joke blockquote{
+  position:relative;
+  border-left: 0;
+    font-size: 2em;
+    color: #666;
+    font-style: italic;
+    padding: 1em 2em;
+}
+
+.joke blockquote:before{
+    content: "“";
+    font-size: 5em;
+    color: #ef6c00;
+    position: absolute;
+    left: -25px;
+    top: -50px;
+    font-family: Georgia, Times, Times New Roman, serif;
+}
+
+
+/* Home
+--------------------------------------- */
+
+#index-banner{
+  height: 350px !important;
+	background:
+		-webkit-linear-gradient(45deg, hsla(172, 96%, 49%, 1) 0%, hsla(172, 96%, 49%, 0) 70%),
+		-webkit-linear-gradient(315deg, hsla(202, 98%, 46%, 1) 10%, hsla(202, 98%, 46%, 0) 80%),
+		-webkit-linear-gradient(225deg, hsla(139, 97%, 50%, 1) 10%, hsla(139, 97%, 50%, 0) 80%),
+		-webkit-linear-gradient(135deg, hsla(75, 98%, 41%, 1) 100%, hsla(75, 98%, 41%, 0) 70%);
+	background:
+		linear-gradient(45deg, hsla(172, 96%, 49%, 1) 0%, hsla(172, 96%, 49%, 0) 70%),
+		linear-gradient(135deg, hsla(202, 98%, 46%, 1) 10%, hsla(202, 98%, 46%, 0) 80%),
+		linear-gradient(225deg, hsla(139, 97%, 50%, 1) 10%, hsla(139, 97%, 50%, 0) 80%),
+		linear-gradient(315deg, hsla(75, 98%, 41%, 1) 100%, hsla(75, 98%, 41%, 0) 70%);
+}
 
 /* Boostrap Alerts
 ---------------------------------------- */

@@ -30,7 +30,7 @@ class Joke extends React.Component {
 
 render() {
   return(
-    <div className="Joke">
+    <div className="joke">
       <h5>Your daily dose of laughter</h5>
       <blockquote>
         { this.state.joke.text }
