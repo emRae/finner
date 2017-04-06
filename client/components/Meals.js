@@ -94,32 +94,50 @@ class Meals extends React.Component {
     console.log(this.state.data.results)
     let recipes = this.state.data.results.map( recipe => {
       return(
-          <div key={recipe.id} className="row">
-              <div className="col s12 m6">
-                <div className="card blue-grey darken-1">
-                  <div className="card-content white-text">
-                    <span className="card-title">{recipe.title}</span>
-                    <h5>From {recipe.creditText}</h5>
+          // <div key={recipe.id} className="row">
+          //     <div className="col s12 m6">
+          //       <div className="card blue-grey darken-1">
+          //         <div className="card-content white-text">
+          //           <span className="card-title">{recipe.title}</span>
+          //           <h5>From {recipe.creditText}</h5>
+          //           <p>Carbs: {recipe.carbs} | Protein: {recipe.protein} | Fat: {recipe.fat}</p>
+          //           <br/>
+          //           <img style={{width:'100%'}} src={recipe.image}/>
+          //         </div>
+          //         <div className="card-action">
+          //           <a href={recipe.sourceUrl} target="_blank">Get the Recipe</a>
+          //         </div>
+          //         <div className="card-action">
+          //           <a onClick={() => this.addMeal(recipe.id)}>Add to Meals</a>
+          //         </div>
+          //       </div>
+          //     </div>
+          //   </div>  
+            <div className="col s12 m4">
+              <div className="card">
+                <div className="card-image">
+                  <img src={recipe.image} />
+                  <span className="card-title" style={{ fontWeight: 'bold', textShadow: 'rgba(0, 0, 0, 0.8) 2px 2px'}}>{recipe.title}</span>
+                </div>
+                <div className="card-content">
+                    <h6 style={{ fontWeight: 'bold'}}>From {recipe.creditText}</h6>
                     <p>Carbs: {recipe.carbs} | Protein: {recipe.protein} | Fat: {recipe.fat}</p>
                     <br/>
-                    <img style={{width:'100%'}} src={recipe.image}/>
-                  </div>
-                  <div className="card-action">
+                </div>
+                <div className="card-action">
                     <a href={recipe.sourceUrl} target="_blank">Get the Recipe</a>
-                  </div>
-                  <div className="card-action">
                     <a onClick={() => this.addMeal(recipe.id)}>Add to Meals</a>
-                  </div>
                 </div>
               </div>
             </div>
+          
       )
     })
 
     return(
       <div className="container">
           <h2 className="center">Your {this.props.route.title} for Today Are:</h2>
-            <div>{recipes}</div>
+            <div className="row">{recipes}</div>
             <form onSubmit={this.handleSubmit}>
               <p>What would you like to eat today?</p>
               <input type="text" name='cuisine' onChange={this.handleChange} placeholder="Chinese, American, Ethiopian?" />
@@ -140,6 +158,8 @@ class Meals extends React.Component {
               <br/>
             <button className='btn center'>Get My Meal</button>
             </form>
+            <br />
+            <br />
         </div>
     )
   }

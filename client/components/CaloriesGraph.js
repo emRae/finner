@@ -24,7 +24,7 @@ class CaloriesGraph extends React.Component {
           <div className="calories-consumed">
             <p><span className="cal-eaten-num num-large">1,000</span><span className="cal-eaten-text">Calories Consumed Today</span></p>
             <div className="progress cal-eaten-bar">
-                <div className="determinate" style={ barStyle }></div>
+                <div className="determinate" style={ { width: '50%'} }></div>
             </div>
             <p>Budget <span className="cal-bmr">{ bmr.toLocaleString('en-US', {maximumFractionDigits: 0}) }</span> Calories</p>
           </div>

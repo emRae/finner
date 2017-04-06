@@ -81,7 +81,7 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{marginBottom: '50px'}}>
         <h2 className="center">{this.props.route.title}</h2>
           <form onSubmit={this.handleSubmit}>
             <input type="email" required={true} ref={ n => this.email = n } placeholder="Email" />
@@ -97,7 +97,7 @@ class SignUp extends React.Component {
             <input type="radio" required={true} name='sex' onChange={this.handleChange} value="female" ref={n => this.sex =n } id='female' />
               <label htmlFor='female'>Female</label>
             </p>
-             <h6>Your goals</h6>
+             <h6 style={{ fontWeight: 'bold' }}>Your goals</h6>
             <input type="radio" value="lose" required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='lose'/>
               <label htmlFor='lose'>Lose Weight</label>
             <input type="radio" value="gain"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='gain' />
@@ -106,7 +106,7 @@ class SignUp extends React.Component {
               <label htmlFor='maintain'>Maintain Weight</label>
             <input type="radio" value="othergoal"required={true} onChange={this.handleChange} name='goals' ref={n => this.goals =n } id='othergoal' />
               <label htmlFor='othergoal'>Other</label>
-            <h6>Your activity level</h6>
+            <h6 style={{ fontWeight: 'bold' }}>Your activity level</h6>
             <input type="radio" value="low" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='low'/>
               <label htmlFor='low'>Low Activity</label>
             <input type="radio" value="medium" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='medium' />
@@ -115,7 +115,7 @@ class SignUp extends React.Component {
               <label htmlFor='high'>High Activity</label>
             <input type="radio" value="otheractivity" required={true} onChange={this.handleChange} name='activity' ref={n => this.activity =n } id='otheractivity' />
               <label htmlFor='otheractivity'>Other</label>
-            <h6>Your dietary restrictions</h6>
+            <h6 style={{ fontWeight: 'bold' }}>Your dietary restrictions</h6>
             <input type="radio" value="vegetarian" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='vegetarian'/>
               <label htmlFor='vegetarian'>Vegetarian</label>
             <input type="radio" value="vegan" required={true} onChange={this.handleChange} name='restrictions' ref={n => this.restrictions =n } id='vegan' />

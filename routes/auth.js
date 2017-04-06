@@ -64,6 +64,14 @@ router.put('/meals', (req, res) => {
   });
 });
 
+// router.post('/meals', (req, res) => {
+//   let { diet, exclusion, bmr } = req.body;
+//   client('/recipes/mealplans/generate', { method: 'GET', query: { diet, exclude: exclusion, targetCalories: bmr} }, (err, data) => {
+//     return res.json(data);
+//   })
+  
+// });
+
 router.post('/signin', (req, res) => {
  let { email, password } = req.body
  User.findOne({ username: req.body.email}, (err, user) => {
@@ -89,14 +97,6 @@ router.get('/user', isAuthenticated, (req,res) => {
 router.delete('/sign_out', (req, res) => {
   req.logout();
   res.status(200).json({});
-});
-
-router.post('/meals', (req, res) => {
-  let { diet, exclusion, bmr } = req.body;
-  client('/recipes/mealplans/generate', { method: 'GET', query: { diet, exclude: exclusion, targetCalories: bmr} }, (err, data) => {
-    return res.json(data);
-  })
-  
 });
 
 router.get('/joke', (req, res) => {

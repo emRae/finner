@@ -35,7 +35,7 @@ module.exports = {
         loader: 'url-loader',
         include: [ path.join(__dirname, "..", "client")],
         options: {
-        limit: 25000
+        // limit: 25000
         }
       },
       { 
